@@ -1,7 +1,8 @@
 ﻿using System.Data;
+using Account.API.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace Authentication.API;
+namespace Account.API;
 
 public class DbSession : IDbSession
 {
