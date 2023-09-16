@@ -1,23 +1,24 @@
-using Authentication.API;
-using Authentication.API.Repository;
-using Authentication.API.Service;
-using MySqlConnector;
+using Account.API;
+using Account.API.Interfaces;
+using Account.API.Repository;
+using Account.API.Service;
+using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddTransient(_ => new MySqlConnection(connectionString));
 builder.Services.AddScoped<IDbSession, DbSession>();
 //Injection Dependency
-builder.Services.AddTransient<IRepository, UserRepository>();
-builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRepository, AccountRepository>();
+builder.Services.AddTransient<IAccountService, AccountService>();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
