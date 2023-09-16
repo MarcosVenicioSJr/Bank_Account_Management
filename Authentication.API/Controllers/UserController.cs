@@ -14,11 +14,12 @@ public class UserController : ControllerBase
     {
         _service = service;
     }
-    
-    
+     
     [HttpPost]
-    public void CreateUser([FromBody] CreateUserRequest model)
+    public async Task<OkObjectResult>CreateUser([FromBody] CreateUserRequest model)
     {
-        _service.CreateUserAsync(model);
+        string accountNumber = await _service.CreateUserAsync(model);
+
+        return Ok(new { Message = $"account ${accountNumber} and user ${model.Name} created successfully" });
     }
 }

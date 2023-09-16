@@ -4,6 +4,6 @@ namespace Authentication.API;
 
 public interface IUserService
 {
-    Task CreateUserAsync(CreateUserRequest model);
+    Task<string> CreateUserAsync(CreateUserRequest model);
     Task Login();
 }

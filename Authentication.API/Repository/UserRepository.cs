@@ -1,10 +1,12 @@
-﻿using Authentication.API.Models;
+﻿using Authentication.API.DTO;
+using Authentication.API.Models;
 using Authentication.API.Querys;
 using Dapper;
+using System.Xml.Linq;
 
 namespace Authentication.API.Repository;
 
-public class UserRepository : IRepository
+public class UserRepository : IUserRepository
 {
     private readonly IDbSession _session;
 
@@ -12,10 +14,13 @@ public class UserRepository : IRepository
     {
         _session = dbSession;
     }
-    
-    public Task Insert()
+
+    public async Task Insert(UserDTO user)
     {
-        throw new NotImplementedException();
+        using (var conn = _session.Connection)
+        {
+            await conn.ExecuteAsync(UserQuery.InsertUser, new { Name = user.Name, Email = user.Email, Password = user.Password });
+        }
     }
 
     public Task Update()

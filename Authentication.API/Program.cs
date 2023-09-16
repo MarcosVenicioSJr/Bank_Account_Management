@@ -1,4 +1,5 @@
 using Authentication.API;
+using Authentication.API.Interfaces;
 using Authentication.API.Repository;
 using Authentication.API.Service;
 using MySqlConnector;
@@ -16,8 +17,10 @@ var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddTransient(_ => new MySqlConnection(connectionString));
 builder.Services.AddScoped<IDbSession, DbSession>();
 //Injection Dependency
-builder.Services.AddTransient<IRepository, UserRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 
 var app = builder.Build();
 

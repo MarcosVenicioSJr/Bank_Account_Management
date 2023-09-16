@@ -1,10 +1,11 @@
-﻿using Authentication.API.Models;
+﻿using Authentication.API.DTO;
+using Authentication.API.Models;
 
 namespace Authentication.API;
 
-public interface IRepository
+public interface IUserRepository
 {
-    Task Insert();
+    Task Insert(UserDTO model);
 
     Task Update();
 

@@ -2,5 +2,12 @@
 
 public class UserQuery
 {
-    public const string FindByEmail = @"select * from authentication.user where Email = '@Email'";
+    public const string FindByEmail = @"SELECT * FROM authentication.user WHERE Email = @Email";
+
+    public const string InsertUser = @"INSERT INTO User (Name, Email, Password) 
+                                VALUES (@Name, @Email, @Password)";
+
+    public const string InsertAccount = @"INSERT INTO Account(AccountNumber, Balance, UserId) 
+                                            VALUES (@AccountNumber, @Balance, @UserId)";
+
 }
