@@ -1,8 +1,8 @@
 ﻿using System.Data;
-using Account.API.Interfaces;
+using MoneyMover.API.Interfaces;
 using MySql.Data.MySqlClient;
 
-namespace Account.API;
+namespace MoneyMover.API;
 
 public class DbSession : IDbSession
 {

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Account.API": {
+    "MoneyMover.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

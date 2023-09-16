@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Account.API.Interfaces;
+namespace MoneyMover.API.Interfaces;
 
 public interface IDbSession : IDisposable
 {

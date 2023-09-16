@@ -1,4 +1,4 @@
-﻿namespace Authentication.API.Models
+﻿namespace MoneyMover.API.Models
 {
     public class Account
     {
@@ -6,6 +6,5 @@
         public int AccountNumber { get; set; }
         public decimal Balance { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
     }
 }

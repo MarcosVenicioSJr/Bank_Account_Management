@@ -13,9 +13,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Database
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddTransient(_ => new MySqlConnection(connectionString));
 builder.Services.AddScoped<IDbSession, DbSession>();
+
 //Injection Dependency
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();

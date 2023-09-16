@@ -16,6 +16,7 @@ public class UserController : ControllerBase
     }
      
     [HttpPost]
+    [Route("CreateNewUser")]
     public async Task<OkObjectResult>CreateUser([FromBody] CreateUserRequest model)
     {
         string accountNumber = await _service.CreateUserAsync(model);
