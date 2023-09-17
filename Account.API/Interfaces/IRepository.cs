@@ -5,12 +5,11 @@ namespace MoneyMover.API.Interfaces;
 
 public interface IRepository
 {
-    Task<MoneyMover.API.Models.Account> GetAccountByAccountNumber(string accountNumber);
-    Task Insert(AccountDTO model);
+    Task<Account> GetAccountByAccountNumber(string accountNumber);
 
     Task Update(Account account);
 
-    Task Delete();
+    Task AddTransactioExtract(ExtractDTO model);
 
-    Task<IEnumerable<int>> FindAll();
+    Task<IEnumerable<dynamic>> GetExtractsByAccountNumber(string accountNumber);
 }

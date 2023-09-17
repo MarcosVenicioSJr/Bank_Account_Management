@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Google.Protobuf.WellKnownTypes;
 using MoneyMover.API.DTO;
 using MoneyMover.API.Interfaces;
 using MoneyMover.API.Models;
@@ -14,14 +15,21 @@ namespace MoneyMover.API.Repository
             _session = dbSession;
         }
 
-        public Task Delete()
+        public async Task AddTransactioExtract(ExtractDTO model)
         {
-            throw new NotImplementedException();
+            using (var coon = _session.Connection)
+            {
+                await coon.ExecuteAsync(MoneyQuerys.MoneyQuerys.AddTransactioExtract,
+                    new { AccountTo = model.AccountTo, AccountFrom = model.AccountFrom, Value = model.Value, TransactionDate = model.TransactionDate });
+            }
         }
 
-        public Task<IEnumerable<int>> FindAll()
+        public async Task<IEnumerable<dynamic>> GetExtractsByAccountNumber(string accountNumber)
         {
-            throw new NotImplementedException();
+            using (var coon = _session.Connection)
+            {
+                return await coon.QueryAsync(MoneyQuerys.MoneyQuerys.GetExtractsByAccountNumber, new { AccountFrom = accountNumber });
+            }
         }
 
         public async Task<Account> GetAccountByAccountNumber(string accountNumber)
@@ -33,11 +41,6 @@ namespace MoneyMover.API.Repository
 
                 return account;
             }
-        }
-
-        public Task Insert(AccountDTO model)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task Update(Account account)

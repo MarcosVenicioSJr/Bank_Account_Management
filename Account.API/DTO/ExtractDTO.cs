@@ -1,0 +1,10 @@
+﻿namespace MoneyMover.API.DTO
+{
+    public class ExtractDTO
+    {
+        public string? AccountTo { get; set; }
+        public string AccountFrom { get; set; }
+        public decimal Value { get; set; }
+        public DateTime TransactionDate { get; set; }
+    }
+}

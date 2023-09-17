@@ -15,7 +15,7 @@ namespace Gateway.API.Controllers
 
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IAuthenticationGatewayService _service;
-        private readonly string Uri = "https://localhost:7125/User/";
+        private readonly string Uri = "https://localhost:32770/User/";
 
         public AuthenticationGatewayController(IHttpClientFactory httpClientFactory, IAuthenticationGatewayService service)
         {
@@ -32,6 +32,7 @@ namespace Gateway.API.Controllers
         }
 
         [HttpPost("CreateUser")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest model)
         {
             if (!ModelState.IsValid)
@@ -39,7 +40,8 @@ namespace Gateway.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var serviceClient = _httpClientFactory.CreateClient();
+            var serviceClient = _httpClientFactory.CreateClient("Authentication");
+            
 
             var request = new
             {

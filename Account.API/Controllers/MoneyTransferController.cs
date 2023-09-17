@@ -1,6 +1,6 @@
 ﻿using MoneyMover.API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MoneyMover.API.DTO;
+using MoneyMover.API.DTO.Requests;
 
 namespace MoneyMover.API.Controllers
 {
@@ -49,7 +49,14 @@ namespace MoneyMover.API.Controllers
         public async Task<OkObjectResult> TransferMoney([FromBody] TransferMoneyRequest model)
         {
             await _service.TransferMoney(model);
-            return Ok(new { Message = "Transfer Successfully Performed."});
+            return Ok(new { Message = "Transfer Successfully Performed." });
+        }
+
+        [HttpGet("GetExtract/{accountNumber}")]
+        public async Task<IActionResult> GetExtractByAccountNumber(string accountNumber)
+        {
+            var response = await _service.GetExtractByAccountNumber(accountNumber);
+            return Ok(new { response });
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MoneyMover.API.DTO;
+using MoneyMover.API.DTO.Requests;
 using MoneyMover.API.Interfaces;
 using MoneyMover.API.Models;
 
@@ -25,6 +26,7 @@ namespace MoneyMover.API.Service
                 account.Balance += model.BalanceDeposit;
 
                 await _repository.Update(account);
+                await SaveExtract(account.AccountNumber, model.BalanceDeposit);
 
             }
             catch (Exception ex)
@@ -61,10 +63,44 @@ namespace MoneyMover.API.Service
                 throw new Exception("The transfer could not be performed. Please check the accounts you entered and try again.");
 
             accountFrom.Balance -= model.Value;
-            accountTo.Balance -= model.Value;
+            accountTo.Balance += model.Value;
 
             await _repository.Update(accountFrom);
             await _repository.Update(accountTo);
+            await SaveExtract(accountFrom.AccountNumber, model.Value, accountTo.AccountNumber);
         }
+
+        public async Task<IEnumerable<dynamic>> GetExtractByAccountNumber(string accountNumber)
+        {
+
+            var extracts = await _repository.GetExtractsByAccountNumber(accountNumber);
+
+            if (extracts == null)
+                throw new Exception("Account not has transactions.");
+
+            var responses = new List<Extract>();
+
+            foreach (var extract in extracts)
+            {
+                responses.Add(extract);
+            }
+
+            return responses;
+        }
+
+        private async Task SaveExtract(string accountFrom, decimal value, string? accountTo = null)
+        {
+            ExtractDTO extract = new ExtractDTO
+            {
+                AccountTo = accountTo,
+                Value = value,
+                AccountFrom = accountFrom,
+                TransactionDate = DateTime.UtcNow
+            };
+
+            await _repository.AddTransactioExtract(extract);
+
+        }
+
     }
 }

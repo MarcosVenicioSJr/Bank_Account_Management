@@ -1,4 +1,4 @@
-﻿namespace MoneyMover.API.DTO
+﻿namespace MoneyMover.API.DTO.Requests
 {
     public class DepositRequest
     {
