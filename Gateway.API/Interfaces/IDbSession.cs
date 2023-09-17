@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Authentication.API
+namespace Gateway.API.Interfaces
 {
     public interface IDbSession : IDisposable
     {
@@ -9,4 +9,3 @@ namespace Authentication.API
 
     }
 }
-

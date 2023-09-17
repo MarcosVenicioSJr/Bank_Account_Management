@@ -1,7 +1,8 @@
-﻿using System.Data;
+﻿using Gateway.API.Interfaces;
 using MySql.Data.MySqlClient;
+using System.Data;
 
-namespace Authentication.API
+namespace Gateway.API
 {
     public class DbSession : IDbSession
     {
@@ -56,4 +57,3 @@ namespace Authentication.API
     }
 
 }
-

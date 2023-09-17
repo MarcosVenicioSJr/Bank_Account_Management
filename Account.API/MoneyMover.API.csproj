@@ -5,10 +5,12 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>d6f36d35-aa09-4948-9e48-85e2bff5881b</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Dapper" Version="2.0.151" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
         <PackageReference Include="MySql.Data" Version="8.1.0" />
         <PackageReference Include="MySqlConnector" Version="2.2.7" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />

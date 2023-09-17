@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.API", "Authe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyMover.API", "Account.API\MoneyMover.API.csproj", "{F85CF080-AF84-4A33-873F-D312D5B01B40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.API", "Gateway.API\Gateway.API.csproj", "{7FC4C0CB-5AA7-4ECE-96E5-4D886A22B711}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F85CF080-AF84-4A33-873F-D312D5B01B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F85CF080-AF84-4A33-873F-D312D5B01B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F85CF080-AF84-4A33-873F-D312D5B01B40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC4C0CB-5AA7-4ECE-96E5-4D886A22B711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC4C0CB-5AA7-4ECE-96E5-4D886A22B711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC4C0CB-5AA7-4ECE-96E5-4D886A22B711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC4C0CB-5AA7-4ECE-96E5-4D886A22B711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
