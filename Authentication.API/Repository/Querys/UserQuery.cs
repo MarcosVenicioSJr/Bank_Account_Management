@@ -2,7 +2,7 @@
 {
     public class UserQuery
     {
-        public const string FindByEmail = @"SELECT * FROM authentication.user WHERE Email = @Email";
+        public const string FindByEmail = @"SELECT * FROM Bank.User WHERE Email = @Email";
 
         public const string InsertUser = @"INSERT INTO User (Name, Email, Password) 
                                 VALUES (@Name, @Email, @Password)";

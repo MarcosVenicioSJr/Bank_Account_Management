@@ -15,6 +15,6 @@
                                                                 (@AccountTo, @AccountFrom, @Value, @TransactionDate)";
 
         public const string GetExtractsByAccountNumber = @"SELECT * FROM Extract
-                                                                    WHERE AccountFrom = @AccountNumber";
+                                                                    WHERE AccountFrom = @AccountFrom";
     }
 }

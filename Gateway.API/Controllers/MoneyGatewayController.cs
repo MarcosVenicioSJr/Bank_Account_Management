@@ -12,7 +12,7 @@ namespace Gateway.API.Controllers
     public class MoneyGatewayController : ControllerBase
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly string Uri = "https://localhost:32784/MoneyTransfer/";
+        private readonly string Uri = "https://localhost:7212/MoneyTransfer/";
 
         public MoneyGatewayController(IHttpClientFactory httpClientFactory)
         {
@@ -26,6 +26,30 @@ namespace Gateway.API.Controllers
             {
                 var serviceClient = _httpClientFactory.CreateClient();
                 var response = await serviceClient.GetAsync($"{Uri}{accountNumber}");
+                var contentResponse = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return Ok(new { Message = contentResponse });
+                }
+                else
+                {
+                    return StatusCode((int)response.StatusCode, "Erro ao chamar o serviço.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erro interno ao chamar o serviço.");
+            }
+        }
+
+        [HttpGet("GetExtract/{accountNumber}")]
+        public async Task<IActionResult> GetExtract(string accountNumber)
+        {
+            try
+            {
+                var serviceClient = _httpClientFactory.CreateClient();
+                var response = await serviceClient.GetAsync($"{Uri}GetExtract/{accountNumber}");
                 var contentResponse = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)

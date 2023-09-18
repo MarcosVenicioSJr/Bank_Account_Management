@@ -13,5 +13,5 @@ public interface IUserRepository
 
     Task<IEnumerable<int>> FindAll();
 
-    Task<User> FindByEmail(string email);
+    Task<dynamic> FindByEmail(string email);
 }

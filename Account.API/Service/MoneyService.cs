@@ -18,7 +18,7 @@ namespace MoneyMover.API.Service
         {
             try
             {
-                Account account = await _repository.GetAccountByAccountNumber(model.AccountNumber);
+                var account = await _repository.GetAccountByAccountNumber(model.AccountNumber);
 
                 if (account == null)
                     throw new Exception("Account not found.");
@@ -39,7 +39,7 @@ namespace MoneyMover.API.Service
         {
             try
             {
-                Account account = await _repository.GetAccountByAccountNumber(accountNumber);
+                var account = await _repository.GetAccountByAccountNumber(accountNumber);
 
                 if (account == null)
                     throw new Exception("Account not found.");
@@ -61,6 +61,9 @@ namespace MoneyMover.API.Service
 
             if (accountTo == null || accountFrom == null)
                 throw new Exception("The transfer could not be performed. Please check the accounts you entered and try again.");
+
+            if (accountFrom.Balance < model.Value)
+                throw new Exception($"Account {accountFrom.AccountNumber} not have balance.");
 
             accountFrom.Balance -= model.Value;
             accountTo.Balance += model.Value;

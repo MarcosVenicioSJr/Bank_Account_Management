@@ -15,7 +15,7 @@ namespace Gateway.API.Controllers
 
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IAuthenticationGatewayService _service;
-        private readonly string Uri = "https://localhost:32770/User/";
+        private readonly string Uri = "https://localhost:7125/User/";
 
         public AuthenticationGatewayController(IHttpClientFactory httpClientFactory, IAuthenticationGatewayService service)
         {

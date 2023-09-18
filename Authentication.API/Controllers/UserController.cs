@@ -21,6 +21,6 @@ public class UserController : ControllerBase
     {
         string accountNumber = await _service.CreateUserAsync(model);
 
-        return Ok(new { Message = $"account ${accountNumber} and user ${model.Name} created successfully" });
+        return Ok(new { Message = $"account {accountNumber} and user {model.Name} created successfully" });
     }
 }

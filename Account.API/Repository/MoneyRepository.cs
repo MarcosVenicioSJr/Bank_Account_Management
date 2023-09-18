@@ -24,19 +24,19 @@ namespace MoneyMover.API.Repository
             }
         }
 
-        public async Task<IEnumerable<dynamic>> GetExtractsByAccountNumber(string accountNumber)
+        public async Task<IEnumerable<Extract>> GetExtractsByAccountNumber(string accountNumber)
         {
             using (var coon = _session.Connection)
             {
-                return await coon.QueryAsync(MoneyQuerys.MoneyQuerys.GetExtractsByAccountNumber, new { AccountFrom = accountNumber });
+                return await coon.QueryAsync<Extract>(MoneyQuerys.MoneyQuerys.GetExtractsByAccountNumber, new { AccountFrom = accountNumber });
             }
         }
 
-        public async Task<Account> GetAccountByAccountNumber(string accountNumber)
+        public async Task<dynamic> GetAccountByAccountNumber(string accountNumber)
         {
             using (var coon = _session.Connection)
             {
-                Account account = await coon.QueryFirstOrDefaultAsync(MoneyQuerys.MoneyQuerys.GetBalanceByAccountNumberQuery,
+                var account = await coon.QueryFirstOrDefaultAsync<Account>(MoneyQuerys.MoneyQuerys.GetBalanceByAccountNumberQuery,
                     new { AccountNumber = accountNumber });
 
                 return account;

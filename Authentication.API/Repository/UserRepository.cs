@@ -38,11 +38,11 @@ public class UserRepository : IUserRepository
         throw new NotImplementedException();
     }
 
-    public async Task<User> FindByEmail(string email)
+    public async Task<dynamic> FindByEmail(string email)
     {
         using (var conn = _session.Connection)
         {
-            User user = await conn.QueryFirstOrDefaultAsync(UserQuery.FindByEmail,
+            var user = await conn.QueryFirstOrDefaultAsync(UserQuery.FindByEmail,
                 new { Email = email });
      
             return user;
